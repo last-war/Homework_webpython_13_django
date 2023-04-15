@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Андрій <andrey.maybrodskyy@gmail.com>"]
 readme = "README.md"
-packages = [{include = "homework_webpython_13_gjango"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

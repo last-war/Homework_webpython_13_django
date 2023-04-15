@@ -12,10 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import environ
 from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-root = environ.Path(__file__) - 3  # get root of the project
 env = environ.Env()
-environ.Env.read_env()  # reading .env file
+environ.Env.read_env(BASE_DIR / '.env')
+
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,3 +127,15 @@ STATIC_URL = env.str('STATIC_URL', default='static/')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_STARTTLS = False
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
